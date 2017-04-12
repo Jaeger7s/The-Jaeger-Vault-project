@@ -12,51 +12,103 @@
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-			ul {
-			    list-style-type: none;
-			    margin: 0;
-			    padding: 0;
-			    width: 200px;
-			    background-color: rgba(0, 0, 0,0.5);
-			   	position: fixed;
-			   	height: 100%;
-			   	overflow: auto;
+			.nav ul {
+			  list-style: none;
+			  background-color: rgba(0,0,0,0.5);
+			  text-align: center;
+			  padding: 0;
+			  margin: 0;
 			}
-
-			li a {
-			    display: block;
-			    color: grey;
-			    padding: 8px 16px;
-			    text-decoration: none;
+			.nav li {
+			  font-family: 'arial', sans-serif;
+			  font-size: 1.2em;
+			  line-height: 40px;
+			  height: 40px;
+			  border-bottom: 1px solid #888;
 			}
-
-			li {
-			    text-align: center;
-			    font-family: "Arial Black", Gadget, sans-serif;
+			 
+			.nav a {
+			  text-decoration: none;
+			  color: #fff;
+			  display: block;
+			  transition: .3s background-color;
 			}
-
-			li a.active {
-			    background-color: rgba(255, 147, 0,0.6);
-			    color: white;
+			 
+			.nav a:hover {
+			  background-color: rgb(255, 148, 0);
 			}
-
-			li a:hover:not(.active) {
-			    background-color: rgba(188, 188, 188, 0.1);
-			    color: white;
+			 
+			.nav a.active {
+			  background-color: rgba(255,255,255,0.5);
+			  color: #444;
+			  cursor: default;
 			}
+			 
+			@media screen and (min-width: 600px) {
+			  .nav li {
+			    width: 120px;
+			    border-bottom: none;
+			    height: 50px;
+			    line-height: 50px;
+			    font-size: 1.4em;
+			  }
+			 
+			  
+			 .nav li {
+			    display: inline-block;
+			    margin-right: -4px;
+			  }
+			 .nav {
+			  	
+			  	background-color: rgba(0,0,0,0.5);
+			  	margin: 0px 380px 0px 380px;
+			  }
+			 .tutorials {
+			 	display: inline-block;
+			 } 
+			 .tutorials-content {
+			 	display: none;
+			    position: absolute;
+			    background-color: rgba(0,0,0,0.5);
+			    min-width: 160px;
+			    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			    z-index: 1;
+			 }
+			 .tutorials:hover .tutorials-content {
+			 	display: block;
+			 	width: 80%;
+			 	margin-left: -500px
+			 }
 
 		</style>
 	</head>
 
 	<body>
 
-		<ul>
-			<li style="text-align: center;"><img src="images/vaultimagetest.png" height="100" width="130"></li>
-			<li><a class="active" href="#home">Home</a></li>
-			<li><a href="index.html">Log In</a></li>
-			<li><a href="index.html">Log In</a></li>
-			<li><a href="index.html">Log In</a></li>
-		</ul>
+		
+
+		 <header>
+    <div class="nav">
+
+    <img src="images/logotest.png" height="100" width="100" style="margin: 10px 0px 10px 90px">
+      <ul>
+        <li class="home"><a class="active" href="#">Home</a></li>
+        <li class="tutorials"><a href="#">Games</a>
+        	<div class="tutorials-content">
+        		<a style="display: inline-block;" href=""><img src="images/smashwiiu.jpg" height="150" width="200"></a>
+        		<a style="display: inline-block;" href=""><img src="images/smashmelee.jpg" height="150" width="200"></a>
+        		<a style="display: inline-block;" href=""><img src="images/streetfighter5.jpg" height="150" width="200"></a>
+        		<a style="display: inline-block;" href=""><img src="images/smashprojectm.jpg" height="150" width="200"></a>
+        		<a style="display: inline-block;" href=""><img src="images/guiltygearxxxrev2.jpg" height="150" width="200"></a>
+        		<a style="display: inline-block;" href=""><img src="images/tekken.jpg" height="150" width="200"></a>
+        	
+        	</div>
+        </li>
+        <li class="about"><a href="#">Categories</a></li>
+        <li class="news"><a href="#">text</a></li>
+      </ul>
+    </div>
+  </header>
 
 	</body>
 
