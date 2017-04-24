@@ -138,6 +138,9 @@
 
 	<body>
 
+	<body onload="loadData()">
+
+
 		
 
 		 <header>
@@ -167,6 +170,68 @@
     </div>
   </header>
 
+  <div  id="display" style="background-color: rgba(0,0,0,0.5); margin-top: 30px;"></div>
+
+
+
+
+  		<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+		<script>
+			  // Initialize Firebase
+			  var config = {
+			    apiKey: "AIzaSyAI4mnXC3Sp2MG_wVKcsGoiiHbpF_CMMNI",
+			    authDomain: "jaegervault.firebaseapp.com",
+			    databaseURL: "https://jaegervault.firebaseio.com",
+			    projectId: "jaegervault",
+			    storageBucket: "jaegervault.appspot.com",
+			    messagingSenderId: "939176160085"
+			  };
+			  firebase.initializeApp(config);
+
+			  function loadData(){
+			  	var messageBoard = document.getElementById("messageBoard");
+
+			  	firebase.database().ref("comments").on("value", function(snapshot){
+			  		for( i in snapshot.val() ){
+			  			messageBoard.innerHTML += snapshot.val()[i].message + "<br>" + "<em>" + snapshot.val()[i].author + "</em>" + "<hr>"
+			  		}
+			  	});
+
+			  	var display = document.getElementById("display");
+			  	firebase.database().ref("images").on("value", function(snapshot){
+			  		for(i in snapshot.val() ){
+			  			var div = document.createElement("div");
+			  			display.appendChild(div);
+
+			  			var img = document.createElement("img");
+			  			img.setAttribute("src", snapshot.val()[i].url);
+			  			img.setAttribute("width", "350"); 
+			  			img.style.margin = "20px";
+			  			div.appendChild(img);
+
+			  			var like = document.createElement("input");
+			  			like.setAttribute("type","button");
+			  			like.setAttribute("value","like");
+			  			like.setAttribute("onclick", "liked(tag.innerHTML)");
+			  			div.appendChild(like);
+
+			  			var tag = document.createElement("p");
+			  			tag.innerHTML = "0";
+			  			tag.style.color = "white";
+			  			div.appendChild(tag);
+			  			
+			  			
+
+			  		}
+			  	});
+
+			  }
+
+			  function liked(value){
+			  	return parseInt(value) + 1;
+
+			  }
+		</script>
 	</body>
 
 </html>
