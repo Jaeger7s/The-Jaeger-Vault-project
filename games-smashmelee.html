@@ -131,10 +131,26 @@
 			 	top: 140px;
 			 }
 
+			 #uploader {
+			 	background-color: rgb(255, 148, 0);
+			 	background-image: url();
+			 	background-size: 400px 100px;
+			 	width: 200px;
+			 	height: 30px;
+			 	margin-top: 35px; 
+
+			 }
+			 .uploadtext {
+			 	font-family: Impact, Charcoal, sans-serif;
+			  font-size: 30px;
+			  color: rgb(255, 148, 0);
+			  margin-top: 0px;
+			 }
+
 		</style>
 	</head>
 
-	<body>
+	<body onload="loadData()">
 
 		
 
@@ -148,13 +164,13 @@
         	<div class="games-content">
         		<a style="display: inline-block;" href="games-smashwiiu.html"><img src="images/smashwiiu.jpg" height="150" width="200"></a>
         		<a style="display: inline-block;" href="games-smashmelee.html"><img src="images/smashmelee.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/streetfighter5.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/injustice2.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/guiltygearxxxrev2.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/tekken.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/blazblue.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/kof.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/mahvel.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/streetfighter5.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/injustice2.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/guiltygearxxxrev2.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/tekken.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/blazblue.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/kof.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/mahvel.jpg" height="150" width="200"></a>
         	
         	</div>
         </li>
@@ -163,6 +179,91 @@
       </ul>
     </div>
   </header>
+  		<div style="text-align: left;">
+
+ 		 <input id="uploader" value="" type="file" onchange="uploadFile()">
+ 		 <p class="uploadtext" style="display: inline-block;">upload here</p>
+
+	</div>
+		 <div  id="display" style="background-color: rgba(0,0,0,0.5); margin-top: 30px;"></div>
+
+  		<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js">
+		</script>
+			<script>
+			  // Initialize Firebase
+			  var config = {
+			    apiKey: "AIzaSyAI4mnXC3Sp2MG_wVKcsGoiiHbpF_CMMNI",
+			    authDomain: "jaegervault.firebaseapp.com",
+			    databaseURL: "https://jaegervault.firebaseio.com",
+			    projectId: "jaegervault",
+			    storageBucket: "jaegervault.appspot.com",
+			    messagingSenderId: "939176160085"
+			  };
+			  firebase.initializeApp(config);
+
+			  function uploadFile(){
+			  	var files = document.getElementById("uploader").files;
+			  	var uploadTask = firebase.storage().ref("smashbrosmelee/" + files[0].name).put(files[0]);
+
+			  	uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, 
+			  		function(snapshot){},
+			  		function(error){},
+			  		function(){
+			  			var filename = uploadTask.snapshot.metadata.name;
+			  			var downloadURL = uploadTask.snapshot.downloadURL;
+
+			  			firebase.database().ref("smashbrosmelee/"+ filename.substr(0, filename.length-4) ).set({
+			  				url: downloadURL
+			  			});
+			  		}
+			  		);
+
+			  }
+			   function loadData(){
+
+			  	var display = document.getElementById("display");
+			  	firebase.database().ref("smashbrosmelee").on("value", function(snapshot){
+			  		for(i in snapshot.val() ){
+			  			var div = document.createElement("div");
+			  			div.style.display = "inline-block";
+			  			display.appendChild(div);
+
+			  			var img = document.createElement("img");
+			  			img.setAttribute("src", snapshot.val()[i].url);
+			  			img.setAttribute("width", "350"); 
+			  			img.style.margin = "20px";
+			  			div.appendChild(img);
+
+			  			var like = document.createElement("input");
+			  			like.setAttribute("type","image");
+			  			like.setAttribute("width","25px");
+			  			like.setAttribute("src","images/likeicon.png");
+			  			
+			  			
+
+			  			var tag = document.createElement("p");
+			  			tag.setAttribute("id",i);
+			  			console.log(tag);
+			  			console.log(i);
+			  			tag.innerHTML = "0";
+			  			tag.style.color = "white";
+			  			tag.style.textAlign = "right";
+			  			tag.style.marginTop = "0px";
+			  			
+			  			
+			  			like.addEventListener("click", function(){
+			  				document.getElementById(i).innerHTML = parseInt(document.getElementById(i).innerHTML)+1;
+			  				firebase.database().ref("smashbrosmelee/"+snapshot.val()+"/likes").set(tag.innerHTML);
+			  			});
+			  			div.appendChild(like);
+			  			div.appendChild(tag);
+
+			  		}
+			  	});
+
+			  }
+
+			</script>
 
 	</body>
 

@@ -132,6 +132,16 @@
 			 	top: 140px;
 			 }
 
+			 #uploader {
+			 	background-color: orange;
+			 	background-image: url(https://media.giphy.com/media/Weq8u4s3Ymsww/giphy.gif);
+			 	background-size: 400px 100px;
+			 	width: 400px;
+			 	height: 100px;
+			 	margin-top: 70px; 
+
+			 }
+
 
 		</style>
 	</head>
@@ -151,13 +161,13 @@
         	<div class="games-content">
         		<a style="display: inline-block;" href="games-smashwiiu.html"><img src="images/smashwiiu.jpg" height="150" width="200"></a>
         		<a style="display: inline-block;" href="games-smashmelee.html"><img src="images/smashmelee.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/streetfighter5.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/injustice2.jpg" height="150" width="200"></a>
-        		<a class="soonimage" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/guiltygearxxxrev2.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/tekken.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/blazblue.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/kof.jpg" height="150" width="200"></a>
-        		<a class="soonimage2" style="display: inline-block;" href=""><h3>Coming Soon <br> EVO 2017!</h3><img src="images/mahvel.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/streetfighter5.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/injustice2.jpg" height="150" width="200"></a>
+        		<a class="soonimage" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/guiltygearxxxrev2.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/tekken.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/blazblue.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/kof.jpg" height="150" width="200"></a>
+        		<a class="soonimage2" style="display: inline-block;" href="http://evo.shoryuken.com/"><h3>Coming Soon <br> EVO 2017!</h3><img src="images/mahvel.jpg" height="150" width="200"></a>
         	
         	</div>
         </li>
@@ -167,8 +177,11 @@
     </div>
   </header>
 
-  <input id="uploader" type="file" onchange="uploadFile()">
+  	<div style="text-align: center;">
 
+ 		 <input id="uploader" value="" type="file" onchange="uploadFile()">
+
+	</div>
 
 		<script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js">
 		</script>
